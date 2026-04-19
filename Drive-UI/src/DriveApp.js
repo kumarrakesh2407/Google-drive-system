@@ -5,6 +5,8 @@ import FileCard from "../src/component/FileCard";
 import "./DriveApp.css";
 import axios from "axios";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080";
+
 function DriveApp() {
   const [files, setFiles] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -14,23 +16,34 @@ function DriveApp() {
   }, []);
 
   const fetchFiles = async () => {
-    const res = await axios.get("http://localhost:8080/api/files/list");
-    setFiles(res.data);
+    try {
+      const res = await axios.get(`${API_URL}/api/files/list`);
+      setFiles(res.data);
+    } catch (error) {
+      console.error("Error fetching files:", error);
+      // Set empty array or mock data when backend is not available
+      setFiles([]);
+    }
   };
 
   const handleUploadFromSidebar = async (file) => {
-    const formData = new FormData();
-    formData.append("file", file);
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
 
-    await axios.post("http://localhost:8080/api/files/upload", formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
+      await axios.post(`${API_URL}/api/files/upload`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
 
-    fetchFiles();
+      fetchFiles();
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      alert("Upload failed. Backend server may not be available.");
+    }
   };
 
   const handleDownload = (id) => {
-    window.location.href = `http://localhost:8080/api/files/download/${id}`;
+    window.location.href = `${API_URL}/api/files/download/${id}`;
   };
 
   const handleDelete = async (id, fileName) => {
@@ -39,8 +52,13 @@ function DriveApp() {
     );
     if (!confirmed) return;
 
-    await axios.delete(`http://localhost:8080/api/files/delete/${id}`);
-    fetchFiles();
+    try {
+      await axios.delete(`${API_URL}/api/files/delete/${id}`);
+      fetchFiles();
+    } catch (error) {
+      console.error("Error deleting file:", error);
+      alert("Delete failed. Backend server may not be available.");
+    }
   };
 
   // Filter files based on search term
