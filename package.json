@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "vercel dev",
-    "build": "echo 'No build step required for serverless functions'"
+    "build": "echo 'No build step required for serverless functions'",
+    "vercel-build": "echo 'No build step required for serverless functions'"
   },
   "dependencies": {
     "formidable": "^3.5.1"
