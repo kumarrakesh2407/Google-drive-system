@@ -1,0 +1,19 @@
+{
+  "name": "google-drive-system-api",
+  "version": "1.0.0",
+  "description": "Serverless API for Google Drive System",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build step required for serverless functions'"
+  },
+  "dependencies": {
+    "formidable": "^3.5.1"
+  },
+  "devDependencies": {
+    "@vercel/node": "^3.0.0"
+  },
+  "keywords": ["vercel", "serverless", "api"],
+  "author": "",
+  "license": "MIT"
+}
