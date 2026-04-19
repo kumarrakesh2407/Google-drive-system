@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="376bf421-6604-4fad-8263-b8d7ee3058c9" name="Changes" comment="Add UI">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vercel.json" beforeDir="false" afterPath="$PROJECT_DIR$/vercel.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +18,7 @@
     </persistenceIdMap>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Drive-UI" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -96,7 +95,7 @@
       <workItem from="1766438114207" duration="1506000" />
       <workItem from="1767252130807" duration="1053000" />
       <workItem from="1767449807482" duration="70000" />
-      <workItem from="1776583172851" duration="338000" />
+      <workItem from="1776583172851" duration="694000" />
     </task>
     <task id="LOCAL-00001" summary="Add UI">
       <option name="closed" value="true" />

@@ -6,6 +6,8 @@ import "./DriveApp.css";
 import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080";
+const isProduction = process.env.NODE_ENV === 'production';
+const shouldSkipApiCalls = isProduction && API_URL.includes('localhost');
 
 function DriveApp() {
   const [files, setFiles] = useState([]);
@@ -16,17 +18,32 @@ function DriveApp() {
   }, []);
 
   const fetchFiles = async () => {
+    // Skip API calls in production if backend is localhost
+    if (shouldSkipApiCalls) {
+      setFiles([]);
+      return;
+    }
+    
     try {
       const res = await axios.get(`${API_URL}/api/files/list`);
       setFiles(res.data);
     } catch (error) {
-      console.error("Error fetching files:", error);
-      // Set empty array or mock data when backend is not available
+      // Only log error in development, not in production
+      if (process.env.NODE_ENV === 'development') {
+        console.error("Error fetching files:", error);
+      }
+      // Set empty array when backend is not available
       setFiles([]);
     }
   };
 
   const handleUploadFromSidebar = async (file) => {
+    // Skip API calls in production if backend is localhost
+    if (shouldSkipApiCalls) {
+      alert("Upload feature is not available in demo mode. Please deploy the backend first.");
+      return;
+    }
+    
     try {
       const formData = new FormData();
       formData.append("file", file);
@@ -37,7 +54,10 @@ function DriveApp() {
 
       fetchFiles();
     } catch (error) {
-      console.error("Error uploading file:", error);
+      // Only log error in development, not in production
+      if (process.env.NODE_ENV === 'development') {
+        console.error("Error uploading file:", error);
+      }
       alert("Upload failed. Backend server may not be available.");
     }
   };
@@ -52,11 +72,20 @@ function DriveApp() {
     );
     if (!confirmed) return;
 
+    // Skip API calls in production if backend is localhost
+    if (shouldSkipApiCalls) {
+      alert("Delete feature is not available in demo mode. Please deploy the backend first.");
+      return;
+    }
+
     try {
       await axios.delete(`${API_URL}/api/files/delete/${id}`);
       fetchFiles();
     } catch (error) {
-      console.error("Error deleting file:", error);
+      // Only log error in development, not in production
+      if (process.env.NODE_ENV === 'development') {
+        console.error("Error deleting file:", error);
+      }
       alert("Delete failed. Backend server may not be available.");
     }
   };
