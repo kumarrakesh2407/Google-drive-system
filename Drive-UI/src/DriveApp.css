@@ -1,0 +1,34 @@
+.main-layout {
+  display: flex;
+}
+
+.content-area {
+  flex: 1;
+  background: #f5f6fa;
+  min-height: 100vh;
+}
+
+.upload-area {
+  padding: 20px;
+  background: #fff;
+}
+
+.files-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 20px;
+}
+
+.empty-state {
+  text-align: center;
+  text-decoration: solid;
+  padding: 50px;
+  font-size: 16px;
+  color: #5f6368;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* 👈 Add this to reduce space between image and text */
+}
